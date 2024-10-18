@@ -6,17 +6,35 @@ on:
       - main
 
 jobs:
+  test-aws-auth:
+    runs-on: ubuntu-latest
 
-  jobs:
-    test-aws-auth:
-      runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-      steps:
-        - name: Read a variable
-          run: echo "${{ secrets.AWS_ACCESS_KEY_ID}}"
+      - name: Display AWS Access Key
+        run: echo "AWS_ACCESS_KEY_ID is set"
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
 
-        - name: AWS credentials 
-          run: echo "${{ secrets.AWS_SECRET_ACCESS_KEY}}"
+      - name: Display AWS Secret Access Key
+        run: echo "AWS_SECRET_ACCESS_KEY is set"
+        env:
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+      - name: Display AWS Session Token (if applicable)
+        run: echo "AWS_SESSION_TOKEN is set"
+        env:
+          AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
+
+      - name: Test AWS credentials with STS
+        run: aws sts get-caller-identity
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}  # Only if using temporary credentials
+
           
 
   # terraform:
