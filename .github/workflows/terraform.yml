@@ -8,19 +8,19 @@ on:
 jobs:
 
   jobs:
-  test-aws-auth:
-    runs-on: ubuntu-latest
+    test-aws-auth:
+      runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      steps:
+        - name: Checkout code
+          uses: actions/checkout@v3
 
-      - name: Test AWS credentials with STS
-        run: aws sts get-caller-identity --debug
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
+        - name: Test AWS credentials with STS
+          run: aws sts get-caller-identity --debug
+          env:
+            AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+            AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
 
   # terraform:
   #   name: 'Terraform'
