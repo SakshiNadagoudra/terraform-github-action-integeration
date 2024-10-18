@@ -13,23 +13,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Display AWS Access Key
-        run: echo "AWS_ACCESS_KEY_ID is set"
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-
-      - name: Display AWS Secret Access Key
-        run: echo "AWS_SECRET_ACCESS_KEY is set"
-        env:
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-
-      - name: Display AWS Session Token (if applicable)
-        run: echo "AWS_SESSION_TOKEN is set"
-        env:
-          AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
+      - name: Check AWS CLI version
+        run: aws --version
 
       - name: Test AWS credentials with STS
-        run: aws sts get-caller-identity
+        run: aws sts get-caller-identity --debug
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
