@@ -19,6 +19,12 @@ jobs:
           echo "AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> $GITHUB_ENV
           echo "AWS_SESSION_TOKEN=${{ secrets.AWS_SESSION_TOKEN }}" >> $GITHUB_ENV
 
+      - name: Check AWS Credentials
+        run: |
+          echo "AWS_ACCESS_KEY_ID is set to: $AWS_ACCESS_KEY_ID"
+          echo "AWS_SESSION_TOKEN is set to: ${AWS_SESSION_TOKEN:0:4}..."  # Show only part of the token
+
+
       - name: Verify AWS credentials
         run: aws sts get-caller-identity
         env:
