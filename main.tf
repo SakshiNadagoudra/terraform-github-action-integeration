@@ -1,12 +1,11 @@
 
 provider "aws" {
-  region  = "us-east-1"
-  access_key = "ASIA6JQ44T4LTXWNVHUT"
-  secret_key = "vmOAPCLgT9h0eRlAlj+AUqaehdha3s+OJ0euNdOZ"
+  region  = "ap-south-1"
+  profile = "default"
 }
 
 resource "aws_s3_bucket" "my_bucket" {
-  bucket = "demo-bucket-tf" 
+  bucket = "a1232-terraform-s3-demo-bucket" 
 }
 
 output "bucket_name" {
