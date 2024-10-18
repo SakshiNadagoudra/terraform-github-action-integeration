@@ -1,7 +1,8 @@
 
 provider "aws" {
   region  = "us-east-1"
-  profile = "default"
+  access_key = "ASIA6JQ44T4LZORH4SFV"
+  secret_key = "63aYd2VLKgTwd/C9wyO0bLdJ5TmMgHTlZbkNuw4v"
 }
 
 resource "aws_s3_bucket" "my_bucket" {
