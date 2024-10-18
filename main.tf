@@ -1,11 +1,9 @@
-
 provider "aws" {
-  region  = "ap-south-1"
-  profile = "default"
+  region = "ap-south-1"
 }
 
 resource "aws_s3_bucket" "my_bucket" {
-  bucket = "a1232-terraform-s3-demo-bucket" 
+  bucket = "a1232-terraform-s3-demo-bucket"
 }
 
 output "bucket_name" {
