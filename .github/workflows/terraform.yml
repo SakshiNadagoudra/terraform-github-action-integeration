@@ -35,9 +35,9 @@ jobs:
       working-directory: ./aws-resources
       run: terraform plan
 
-    - name: Terraform Destroy
+    - name: Terraform Apply
       working-directory: ./aws-resources
-      run: terraform destroy -auto-approve
+      run: terraform apply -auto-approve
 
 
 
